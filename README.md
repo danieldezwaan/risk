@@ -5,3 +5,4 @@ install SpecFlow visual studio extension per http://specflow.org/getting-started
 2. Install NuGet packages
 	- EntityFramework v6.1.3 
 	- CsvHelper.2.16.3
+	- SpecFlow.NUnit
