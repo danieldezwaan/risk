@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Risk.DataContext;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,13 +15,40 @@ namespace Risk.Models
 
         //Foreign Keys
         public int          CustomerId { get; set; }
-        public Customer     Customer { get; set; }
+        public Customer     Customer
+        {
+            get
+            {
+                using (var context = new RiskContext())
+                {
+                    return context.Customers.Where(c => c.CustomerId == CustomerId).FirstOrDefault();
+                }
+            }
+        }
 
         public int          EventId { get; set; }
-        public Event        Event { get; set; }
+        public Event Event
+        {
+            get
+            {
+                using (var context = new RiskContext())
+                {
+                    return context.Events.Where(e => e.EventId == EventId).FirstOrDefault();
+                }
+            }
+        }
 
         public int          ParticipantId { get; set; }
-        public Participant  Participant { get; set; }
+        public Participant Participant
+        {
+            get
+            {
+                using (var context = new RiskContext())
+                {
+                    return context.Participants.Where(p => p.ParticipantId == ParticipantId).FirstOrDefault();
+                }
+            }
+        }
 
         public decimal      Stake { get; set; }
 

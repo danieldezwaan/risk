@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using Risk.Models;
 using Risk.DataContext.Seed;
+using System.Data.Entity.Core.Objects;
 
 namespace Risk.DataContext 
 {
@@ -14,6 +15,6 @@ namespace Risk.DataContext
         public DbSet<Event>         Events { get; set; }
         public DbSet<Participant>   Participants { get; set; }
         public DbSet<Bet>           Bets { get; set; }
-        
+
     }
 }
