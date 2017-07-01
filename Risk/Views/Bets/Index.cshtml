@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Risk.Models.Bet>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Unsettled Bets";
 }
 
-<h2>Index</h2>
+<h2>Unsettled Bets</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -27,14 +24,15 @@
             @Html.DisplayNameFor(model => model.Win)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Settled)
+            Flag
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
+@foreach (var item in Model)
+{
+    <tr >
+        <td style="@(item.Customer.WinRate > (decimal)0.6 ? "Background-color:red" : "")">
             @Html.DisplayFor(modelItem => item.CustomerId)
         </td>
         <td>
@@ -43,20 +41,28 @@
         <td>
             @Html.DisplayFor(modelItem => item.ParticipantId)
         </td>
-        <td>
+        <td style="@(item.Stake > 1000 ? "Background-color:green" : "")">
             @Html.DisplayFor(modelItem => item.Stake)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Win)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Settled)
+            @if (item.Customer.WinRate > (decimal)0.6)
+            {
+                <p>Customer is winning at an unusual rate</p>
+            }
+            @if ((item.Customer.AverageBet * 10) < item.Stake)
+            {
+                <p>Unusual Bet</p>
+            }
+            @if ((item.Customer.AverageBet * 30) < item.Stake)
+            {
+                <p>Highly Unusual Bet</p>
+            }
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BetId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BetId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BetId })
-        </td>
+
+       
     </tr>
 }
 

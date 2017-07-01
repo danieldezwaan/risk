@@ -15,18 +15,9 @@ namespace Risk.Models
 
         //Foreign Keys
         public int          CustomerId { get; set; }
-        public Customer     Customer
-        {
-            get
-            {
-                using (var context = new RiskContext())
-                {
-                    return context.Customers.Where(c => c.CustomerId == CustomerId).FirstOrDefault();
-                }
-            }
-        }
+        public Customer     Customer { get; set; }
 
-        public int          EventId { get; set; }
+    public int          EventId { get; set; }
         public Event Event
         {
             get

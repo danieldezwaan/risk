@@ -16,9 +16,18 @@ namespace Risk.Controllers
         private RiskContext db = new RiskContext();
 
         // GET: BetsView
+        //Only including unsettled bets to meet display requirements
         public ActionResult Index()
         {
-            return View(db.Bets.ToList());
+            var bets = db.Bets.Where(b => b.Settled == false).ToList();
+            foreach (var bet in bets)
+            {
+                if (bet.Customer == null)
+                {
+                    bet.Customer = db.Customers.Where(c => c.CustomerId == bet.CustomerId).FirstOrDefault();
+                }
+            }
+            return View(bets);
         }
 
         // GET: BetsView/Details/5
