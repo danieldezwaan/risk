@@ -27,12 +27,12 @@ Highlight:
 	- "Risk.DataContext.Seed.Settled.csv"
 	- "Risk.DataContext.Seed.Unsettled.csv"
 
-##Running the application
-*View controllers added to quickly meet UI requirements*
-http://localhost:*nnn*/Customers
-http://localhost:*nnn*/Bets
+## Running the application
+View controllers added to quickly meet UI requirements
+- http://localhost:*nnn*/Customers
+- http://localhost:*nnn*/Bets
 
-*WebApi controllers exist for reference*
-http://localhost:*nnn*/api/customersapi
-http://localhost:*nnn*/api/Betsapi		
+WebApi controllers exist for reference
+- http://localhost:*nnn*/api/customersapi
+- http://localhost:*nnn*/api/Betsapi		
 
