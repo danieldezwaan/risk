@@ -64,19 +64,17 @@ namespace Risk.Specs
         }
         
         [TechTalk.SpecRun.ScenarioAttribute("Average settled bet win percentage", new string[] {
-                "mytag"}, SourceLine=4)]
+                "requirement"}, SourceLine=4)]
         public virtual void AverageSettledBetWinPercentage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Average settled bet win percentage", new string[] {
-                        "mytag"});
+                        "requirement"});
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 6
- testRunner.Given("The average win rate for a customer is greater than 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("The data seed process is complete", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("The average win rate is calculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 8
- testRunner.Then("The customer win percentage value should equal the win rate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Customer 1 win percentage value should equal 0.7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

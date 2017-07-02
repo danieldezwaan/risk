@@ -1,27 +1,22 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TechTalk.SpecFlow;
 
 namespace Risk.Specs
 {
     [Binding]
-    public class WinRateSteps
+    public class WinRateSteps : StepBase
     {
-        [Given(@"The average win rate for a customer is greater than (.*)")]
-        public void GivenTheAverageWinRateForACustomerIsGreaterThan(int p0)
+        [Given(@"The data seed process is complete")]
+        public void GivenTheDataSeedProcessIsComplete()
         {
-            ScenarioContext.Current.Pending();
+            //Data context is loaded in base class
         }
         
-        [When(@"The average win rate is calculated")]
-        public void WhenTheAverageWinRateIsCalculated()
+        [Then(@"Customer (.*) win percentage value should equal (.*)")]
+        public void ThenCustomerWinPercentageValueShouldEqual(int p0, Decimal p1)
         {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"The customer win percentage value should equal the win rate")]
-        public void ThenTheCustomerWinPercentageValueShouldEqualTheWinRate()
-        {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(context.Customers.Find(p0).WinRate, p1);
         }
     }
 }

@@ -16,69 +16,64 @@ namespace Risk.Models
         public int      CustomerId { get; set; }
         public string   Name { get; set; }
 
-        private decimal _winRate;
+        //win rate = ratio of settled bets won
         public decimal  WinRate
         {
             get
             {
-                //win rate = ratio of settled bets won
-                using (var context = new RiskContext())
-                {
-                    int betsWon = context.Bets
-                        .Where(b => b.CustomerId == CustomerId && b.Settled == true && b.Win > 0)
-                        .Count();
-                    if (betsWon == 0)
-                    {
-                        _winRate = 0;
-                    }
-                    else
-                    {
-                        int settledBets = context.Bets
-                            .Where(b => b.CustomerId == CustomerId && b.Settled == true)
-                            .Count();
-                        _winRate = (decimal)betsWon / settledBets;
-                    }
-                }
-                return _winRate;
-            }
-            set
-            {
-                _winRate = value;
+                return calcWinRate();
             }
         }
-
-        private decimal? _averageBet;
+        
+        //win rate = ratio of settled bets won
         public decimal  AverageBet
         {
             get
             {
-                //win rate = ratio of settled bets won
-                using (var context = new RiskContext())
-                {
-                    if (context.Bets
-                            .Where(b => b.CustomerId == CustomerId)
-                            .Count() == 0)
-                    {
-                        _averageBet = 0;
-                    }
-                    else
-                    {
-                        _averageBet = context.Bets
-                        .Where(b => b.CustomerId == CustomerId)
-                        .Average(b => b.Stake);
-                    }
-                }
-                if (_averageBet == null) _averageBet = 0;
-                return (decimal)_averageBet;
-            }
-            set
-            {
-                _averageBet = value;
+                return calcAverageBet();
             }
         }
 
-        
+        private decimal calcAverageBet()
+        {
+            using (var context = new RiskContext())
+            {
+                if (context.Bets
+                        .Where(b => b.CustomerId == CustomerId)
+                        .Count() == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (decimal)context.Bets
+                    .Where(b => b.CustomerId == CustomerId)
+                    .Average(b => b.Stake);
+                }
+            }
+        }
 
+
+        private decimal calcWinRate()
+        {
+            using (var context = new RiskContext())
+            {
+                int betsWon = context.Bets
+                    .Where(b => b.CustomerId == CustomerId && b.Settled == true && b.Win > 0)
+                    .Count();
+                if (betsWon == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    int settledBets = context.Bets
+                        .Where(b => b.CustomerId == CustomerId && b.Settled == true)
+                        .Count();
+                    return (decimal)betsWon / settledBets;
+                }
+            }
+        }
 
 
     }

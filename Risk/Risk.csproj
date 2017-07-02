@@ -174,7 +174,13 @@
     <Compile Include="DataContext\Seed\CsvCustomerMap.cs" />
     <Compile Include="DataContext\Seed\CsvEventMap.cs" />
     <Compile Include="DataContext\Seed\CsvParticipantMap.cs" />
+    <Compile Include="DataContext\Seed\ICsvSeed.cs" />
+    <Compile Include="DataContext\Seed\ICsvSeedBet.cs" />
     <Compile Include="DataContext\Seed\RiskContextSeedInit.cs" />
+    <Compile Include="DataContext\Seed\SeedBets.cs" />
+    <Compile Include="DataContext\Seed\SeedCustomers.cs" />
+    <Compile Include="DataContext\Seed\SeedEvents.cs" />
+    <Compile Include="DataContext\Seed\SeedParticipants.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
